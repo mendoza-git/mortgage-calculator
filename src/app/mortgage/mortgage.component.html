@@ -17,24 +17,23 @@
 
 <div class="row">
   <div class="col s12">
-    <h1>{{ mortgage.interestRate }}</h1>
     <form>
       <div class="input-field col s4">
         <div class="form-group">
           <i class="material-icons prefix">attach_money</i>
-          <input [(ngModel)]="mortgage.loanAmount" class="form-control" type="number" placeholder="Total Loan Amount">
+          <input [(ngModel)]="mortgage.loanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
         </div>
       </div> 
       <div class="input-field col s4">
         <div class="form-group">
           <i class="material-icons prefix">insert_chart_outlined</i>
-          <input [(ngModel)]="mortgage.interestRate" class="form-control" type="number" placeholder="Interest Rate">
+          <input [(ngModel)]="mortgage.interestRate" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
         </div>
       </div>   
       <div class="input-field col s4">
         <div class="form-group">
           <i class="material-icons prefix">timer</i>
-          <input [(ngModel)]="mortgage.numYears" class="form-control" type="number" placeholder="Number of years">
+          <input [(ngModel)]="mortgage.numYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
         </div>
       </div>
       <div class="box-container">
@@ -43,6 +42,7 @@
         </button> 
       </div>
     </form>
+    <h1>{{mortgage.interestRate}}</h1>  
   </div>
 </div>
 
