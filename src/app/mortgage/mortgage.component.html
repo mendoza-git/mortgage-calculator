@@ -4,7 +4,7 @@
  <!-- Compiled and minified JavaScript -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
- <nav>
+<nav>
   <div class="nav-wrapper">
     <a href="#" class="brand-logo center"><img class="responsive-img" id="logo" src="https://home.fanniemae.com/HCD/SyndicatorDashboard/images/fannie_mae_logo_reg.png"/></a>
   </div>
@@ -17,36 +17,38 @@
 
 <div class="row">
   <div class="col s12">
-    <form>
+    <form ng-controller="calculation">
       <div class="input-field col s4">
         <div class="form-group">
           <i class="material-icons prefix">attach_money</i>
-          <input [(ngModel)]="mortgage.loanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
+          <input [(ngModel)]="loanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
         </div>
       </div> 
       <div class="input-field col s4">
         <div class="form-group">
           <i class="material-icons prefix">insert_chart_outlined</i>
-          <input [(ngModel)]="mortgage.interestRate" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
+          <input [(ngModel)]="interestRate" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
         </div>
       </div>   
       <div class="input-field col s4">
         <div class="form-group">
           <i class="material-icons prefix">timer</i>
-          <input [(ngModel)]="mortgage.numYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
+          <input [(ngModel)]="numYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
         </div>
       </div>
-      <div class="box-container">
-        <button class="btn waves-effect waves-light" id="submitButton" type="submit" name="action">Calculate Now
-          <i class="material-icons right">done</i>
-        </button> 
-      </div>
     </form>
-    <h1>{{mortgage.interestRate}}</h1>  
+    <div class="box-container">
+      <h4>Total Principal: <i class="material-icons prefix" id="money_icon">attach_money</i>{{calculate_principal()}}  <i class="material-icons prefix" id="money_icon">more_vert</i>  Monthly Payments: <i class="material-icons prefix" id="money_icon">attach_money</i>{{calculate_monthly_payments()}}</h4>
+    </div>
+    <div class="box-container">
+      <button class="btn waves-effect waves-light" id="submitButton" type="submit" (click)="onSubmit()" name="action">Calculate Now
+        <i class="material-icons right">done</i>
+      </button> 
+    </div>
   </div>
 </div>
 
 <img class="fannie-img" width="600" src="https://designmodo.com/wp-content/uploads/2015/04/86-illustration-finished.png" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script> 

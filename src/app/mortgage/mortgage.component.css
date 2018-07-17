@@ -22,7 +22,7 @@ h5 {
     bottom: 40px;
     left: 50%;
     margin-left: -300px; /* half width of img */
-  }
+}
 
 .nav-wrapper {
     background-color: #0a1040;
@@ -35,6 +35,10 @@ h5 {
 
 .row {
     width: 70%;
+}
+
+#money_icon {
+    color: #006600;
 }
 
 #submitButton {
