@@ -1,2 +1,58 @@
-<app-mortgage></app-mortgage>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center"><img class="responsive-img" id="logo" src="https://home.fanniemae.com/HCD/SyndicatorDashboard/images/fannie_mae_logo_reg.png"/></a>
+    </div>
+</nav>
+
+<div class="box-container">
+    <h1 class="animated fadeInDown">Let us calculate your mortgage.</h1>
+    <h4 class="animated fadeInLeft">Begin by filling out some information.</h4>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s6"><a href="#test1">Calculator</a></li>
+            <li class="tab col s6"><a href="#test2">Visuals</a></li>
+        </ul>
+    </div>
+    <div id="test1" class="col s12">
+        <form ng-controller="calculation">
+            <div class="input-field col s4">
+                <div class="form-group">
+                    <i class="material-icons prefix">attach_money</i>
+                    <input [(ngModel)]="loanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
+                </div>
+            </div> 
+            <div class="input-field col s4">
+                <div class="form-group">
+                    <i class="material-icons prefix">insert_chart_outlined</i>
+                    <input [(ngModel)]="interestRate" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
+                </div>
+            </div>   
+            <div class="input-field col s4">
+                <div class="form-group">
+                    <i class="material-icons prefix">timer</i>
+                    <input [(ngModel)]="numYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
+                </div>
+            </div>
+        </form>
+        <div class="box-container">
+            <h4>Total Principal: <i class="material-icons prefix" id="money_icon">attach_money</i>{{calculate_principal()}}  <i class="material-icons prefix" id="money_icon">more_vert</i>  Monthly Payments: <i class="material-icons prefix" id="money_icon">attach_money</i>{{calculate_monthly_payments()}}</h4>
+        </div>
+    </div>
+    <div id="test2" class="col s12">
+        <p>Graphs will go here</p>
+    </div>
+</div>
+
+<img class="fannie-img" width="600" src="https://designmodo.com/wp-content/uploads/2015/04/86-illustration-finished.png" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script> 
 
