@@ -19,6 +19,11 @@ export class AppComponent {
 
   constructor() { }
 
+  num_payments(){
+    this.n = this.numYears * 12;
+    return this.n;
+  }
+
   calculate_principal(){
     this.n = this.numYears * 12;
     this.rate = this.interestRate / 1200;
