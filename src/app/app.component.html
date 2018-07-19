@@ -1,82 +1,77 @@
 <nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center"><img class="responsive-img" id="logo" src="https://home.fanniemae.com/HCD/SyndicatorDashboard/images/fannie_mae_logo_reg.png"/></a>
-    </div>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center"><img class="responsive-img" id="logo" src="https://home.fanniemae.com/HCD/SyndicatorDashboard/images/fannie_mae_logo_reg.png"/></a>
+  </div>
 </nav>
 
 <div class="box-container">
-    <h1 class="animated fadeInDown">Let us calculate your mortgage.</h1>
-    <h4 class="animated fadeInLeft">Begin by filling out some information.</h4>
-    <h4 class="animated fadeInLeft"><b></b></h4>
+  <h1 class="animated fadeInDown">Let us calculate your mortgage.</h1>
+  <h4 class="animated fadeInLeft">Begin by filling out some information.</h4>
+  <h4 class="animated fadeInLeft"><b></b></h4>
 </div>
 
 <div class="row">
-    <div class="col s12 ">
-        <ul class="tabs ">
-            <li class="tab col s4"><a class="active" href="#test1">Mortgage Calculator</a></li>
-            <li (click)="calculateAmorization()" class="tab col s4"><a href="#test2">Visualization</a></li>
-            <li class="tab col s4"><a href="#test3">Formulas and Information</a></li>
-        </ul>
+  <div class="col s12 ">
+    <ul class="tabs ">
+      <li class="tab col s4"><a class="active" href="#test1">Mortgage Calculator</a></li>
+      <li (click)="calculateAmorization()" class="tab col s4"><a href="#test2">Visualization</a></li>
+      <li class="tab col s4"><a href="#test3">Formulas and Information</a></li>
+    </ul>
+  </div>
+  <div id="test1" class="col s12">
+    <form ng-controller="calculation">
+      <div class="input-field col s4">
+        <div class="form-group">
+          <i class="material-icons prefix">attach_money</i>
+          <input [(ngModel)]="loanAmount" autocomplete="false" id="userLoanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
+        </div>
+      </div>
+      <div class="input-field col s4">
+        <div class="form-group">
+          <i class="material-icons prefix">insert_chart_outlined</i>
+          <input [(ngModel)]="interestRate" autocomplete="false" id="userInterest" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
+        </div>
+      </div>
+      <div class="input-field col s4">
+        <div class="form-group">
+          <i class="material-icons prefix">timer</i>
+          <input [(ngModel)]="numYears" autocomplete="false" id="userYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
+        </div>
+      </div>
+    </form>
+    <div class="col s4" style="text-align: center;">
+      <h5>Monthly Principal and Interest</h5>
     </div>
-    <div id="test1" class="col s12">
-        <form ng-controller="calculation">
-            <div class="input-field col s4">
-                <div class="form-group">
-                    <i class="material-icons prefix">attach_money</i>
-                    <input [(ngModel)]="loanAmount" id="userLoanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
-                </div>
-            </div> 
-            <div class="input-field col s4">
-                <div class="form-group">
-                    <i class="material-icons prefix">insert_chart_outlined</i>
-                    <input [(ngModel)]="interestRate" id="userInterest" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
-                </div>
-            </div>   
-            <div class="input-field col s4">
-                <div class="form-group">
-                    <i class="material-icons prefix">timer</i>
-                    <input [(ngModel)]="numYears" id="userYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
-                </div>
-            </div>
-        </form>
-        <div class="col s4" style="text-align: center;">
-            <h5>Monthly Principal and Interest</h5>
-        </div>
-        <div class="col s4" style="text-align: center;">
-            <h5>Number of Payments</h5>
-        </div>
-        <div class="col s4" style="text-align: center;">
-            <h5>Total Payments</h5>
-        </div>
-        <div class="col s4" style="text-align: center;">
-            <h5><i class="material-icons">attach_money</i> {{ calculate_monthly_payments() }}</h5>
-        </div>
-        <div class="col s4" style="text-align: center;">
-            <h5>{{ num_payments() }}</h5>
-        </div>  
-        <div class="col s4" style="text-align: center;">
-            <h5><i class="material-icons">attach_money</i>{{ calculate_principal() }}</h5>
-        </div>     
+    <div class="col s4" style="text-align: center;">
+      <h5>Number of Payments</h5>
     </div>
-    <div id="test2" class="col s12">
-        <div [hidden]="!chart">
-            <canvas id="canvas" width="300" height="200">{{chart}}</canvas>
-        </div>
-        {{interestArray}}
+    <div class="col s4" style="text-align: center;">
+      <h5>Total Payments</h5>
     </div>
-    <div id="test3" class="col s12">
-        <div class="box-container">
-            <h2>Formulas and Functions (All in Typescript)</h2>
-            <h3>Monthly Principle and Interest Calculation: ----</h3>
-            <h3>Number of Payments Calculation: ----</h3>
-            <h3>Total Payments Calculation: ----</h3>
-        </div>
+    <div class="col s4" style="text-align: center;">
+      <h5><i class="material-icons">attach_money</i> {{ calculate_monthly_payments() }}</h5>
     </div>
+    <div class="col s4" style="text-align: center;">
+      <h5>{{ num_payments() }}</h5>
+    </div>
+    <div class="col s4" style="text-align: center;">
+      <h5><i class="material-icons">attach_money</i>{{ calculate_principal() }}</h5>
+    </div>
+  </div>
+  <div id="test2" class="col s12">
+    <div [hidden]="!chart">
+      <canvas id="canvas" width="300" height="200">{{chart}}</canvas>
+    </div>
+    {{interestArray}}
+  </div>
+  <div id="test3" class="col s12">
+    <div class="box-container">
+      <h2>Formulas and Functions (All in Typescript)</h2>
+      <h3>Monthly Principle and Interest Calculation: ----</h3>
+      <h3>Number of Payments Calculation: ----</h3>
+      <h3>Total Payments Calculation: ----</h3>
+    </div>
+  </div>
 </div>
 
 <img class="fannie-img" id="house" width="600" src="https://designmodo.com/wp-content/uploads/2015/04/86-illustration-finished.png" />
-
-
-
-
-

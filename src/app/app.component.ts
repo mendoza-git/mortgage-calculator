@@ -29,22 +29,38 @@ export class AppComponent {
   constructor() {}
 
   num_payments(){
-    this.n = this.numYears * 12;
-    return this.n;
+    if(isNaN(this.numYears)){
+
+      return "0";
+    }
+    else{
+      return ""+this.numYears*12;
+    }
   }
 
   calculate_principal(){
-    this.n = this.numYears * 12;
-    this.rate = this.interestRate / 1200;
-    this.total_months = this.numYears * 12;
+    if(isNaN(this.loanAmount) || isNaN(this.interestRate) || isNaN(this.numYears)){
+      return "0";
+    }else{
+      this.n = this.numYears * 12;
+      this.rate = this.interestRate / 1200.0;
+      this.total_months = this.numYears * 12;
 
-    this.total_principal = (Math.round(( this.loanAmount * ( this.rate * Math.pow((1 + this.rate), this.n))) / (Math.pow((1+this.rate), this.n) - 1)) * this.total_months);
-    return this.total_principal;
+      this.total_principal = (Math.round(( this.loanAmount * ( this.rate * Math.pow((1 + this.rate), this.n))) / (Math.pow((1+this.rate), this.n) - 1)) * this.total_months);
+      return this.total_principal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
   }
 
   calculate_monthly_payments() {
-    this.monthly_payment = (Math.round(( this.loanAmount * ( this.rate * Math.pow((1 + this.rate), this.n))) / (Math.pow((1+this.rate), this.n) - 1)));
-    return this.monthly_payment;
+    if(isNaN(this.loanAmount) || isNaN(this.interestRate) || isNaN(this.numYears)){
+      return "0";
+    }
+    else{
+      this.monthly_payment = (Math.round(( this.loanAmount * ( this.rate * Math.pow((1 + this.rate), this.n))) / (Math.pow((1+this.rate), this.n) - 1)));
+      return this.monthly_payment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
   }
 
   calculateAmorization() {
