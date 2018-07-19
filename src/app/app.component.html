@@ -12,8 +12,9 @@
 <div class="row">
     <div class="col s12 ">
         <ul class="tabs ">
-            <li class="tab col s6"><a class="active" href="#test1">Calculator</a></li>
-            <li class="tab col s6"><a href="#test2">Visualization</a></li>
+            <li class="tab col s4"><a class="active" href="#test1">Mortgage Calculator</a></li>
+            <li class="tab col s4"><a href="#test2">Visualization</a></li>
+            <li class="tab col s4"><a href="#test3">Amortization Schedule</a></li>
         </ul>
     </div>
     <div id="test1" class="col s12">
@@ -57,10 +58,21 @@
         </div>     
     </div>
     <div id="test2" class="col s12">
-        <p>Graphs will go here</p>
+        <h1>Tables go Here</h1>
+        <h1>{{ generateAmorizationArray() }}</h1>
+        <h6>{{paymentArray}}</h6>
+        <h6>{{interestArray}}</h6>
+        <h6>{{principalArray}}</h6>
+        
+    </div>
+    <div id="test3" class="col s12">
+        <h1>Amorization Table Here</h1> 
+
     </div>
 </div>
 
+
 <img class="fannie-img" width="600" src="https://designmodo.com/wp-content/uploads/2015/04/86-illustration-finished.png" />
+
 
 
