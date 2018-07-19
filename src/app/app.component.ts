@@ -165,7 +165,7 @@ export class AppComponent {
       title: {
       fontSize: 20,
         display: true,
-        text: 'Interest vs. Principal'
+        text: 'Payment Breakdown'
       },
       scales: {
          yAxes: [{
