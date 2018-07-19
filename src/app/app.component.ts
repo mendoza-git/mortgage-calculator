@@ -143,7 +143,7 @@ export class AppComponent {
           fill: false,
           backgroundColor: [
             'rgba(255,99,132,1)'
-          ]
+          ],
           borderColor: [
             'rgba(255,99,132,1)'
             /*
