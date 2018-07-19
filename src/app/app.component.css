@@ -17,6 +17,9 @@ h5 {
     text-align: center;
 }
 
+.images {
+    display: inline-block;
+}
 
 .nav-wrapper {
     background-color: #0a1040;

@@ -9,9 +9,9 @@ import { Chart} from 'chart.js';
 export class AppComponent {
   chart: any;
   title = 'Fattie Mae';
-  loanAmount: number = 150000;
-  interestRate: number = 4.25;
-  numYears: number = 30;
+  loanAmount: number;
+  interestRate: number;
+  numYears: number;
 
   n: number;
   rate: number;
@@ -46,10 +46,12 @@ export class AppComponent {
   }
 
   calculateAmorization() {
+    document.getElementById('house').style.visibility='hide';
     this.ngOnInit();
     var user_loan_amount = parseFloat((<HTMLInputElement>document.getElementById("userLoanAmount")).value);
     var user_interest_rate = parseFloat((<HTMLInputElement>document.getElementById("userInterest")).value);
     var user_months = parseFloat((<HTMLInputElement>document.getElementById("userYears")).value) * 12;
+    var years = parseFloat((<HTMLInputElement>document.getElementById("userYears")).value);
 
     var month_counter = 1;
 
