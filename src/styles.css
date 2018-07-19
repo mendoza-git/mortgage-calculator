@@ -1,3 +1,9 @@
+.fannie-img {
+  position: relative;
+  left: 50%;
+  margin-left: -300px; /* half width of img */
+}
+
 .footer {
   position: fixed;
   left: 0;

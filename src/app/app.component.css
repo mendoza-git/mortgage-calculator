@@ -17,12 +17,6 @@ h5 {
     text-align: center;
 }
 
-.fannie-img {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    margin-left: -300px; /* half width of img */
-}
 
 .nav-wrapper {
     background-color: #0a1040;
