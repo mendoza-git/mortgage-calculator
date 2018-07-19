@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Chart} from 'chart.js';
  
 @Component({
   selector: 'app-root',
@@ -6,21 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  chart: any;
   title = 'Fattie Mae';
   loanAmount: number = 150000;
   interestRate: number = 4.25;
   numYears: number = 30;
-
-  paymentArray = [];
-  interestArray = [];
-  principalArray = [];
-  remainingBalanceArray = [];
 
   n: number;
   rate: number;
   total_months: number;
   total_principal: number;
   monthly_payment: number;
+
+  paymentsArray = [];
+  interestArray = [];
+  principalArray = [];
+
 
   constructor() {}
 
@@ -43,31 +45,96 @@ export class AppComponent {
     return this.monthly_payment;
   }
 
-  generateAmorizationArray() {
+  calculateAmorization() {
+    this.ngOnInit();
+    var user_loan_amount = parseFloat((<HTMLInputElement>document.getElementById("userLoanAmount")).value);
+    var user_interest_rate = parseFloat((<HTMLInputElement>document.getElementById("userInterest")).value);
+    var user_months = parseFloat((<HTMLInputElement>document.getElementById("userYears")).value) * 12;
 
-    var total_payments = this.numYears * 12;
-    var current_payment = 0;
+    var month_counter = 1;
 
-    var current_balance = this.loanAmount;
-    var interestRate = this.interestRate / 1200;
-
-    while (current_payment <= total_payments) {
-      var n = current_balance * interestRate;
-      var m = current_payment - n;
-
-      this.paymentArray.push(this.loanAmount * (this.interestRate / 1200));
-      this.interestArray.push(n);
-      this.principalArray.push(m);
-
-      current_balance = current_balance - n;
-      this.remainingBalanceArray.push(current_balance);
-
-      current_payment++;
+    while(month_counter <= user_months) {
+      this.paymentsArray.push(month_counter);
+      month_counter++;
     }
 
+    month_counter = 0;
+
+    var ir;
+    var pl;
+    var remaining_balance = user_loan_amount;
+    var c = user_interest_rate / 1200.0;
+    var l = user_loan_amount;
+    var p = l * ((c * Math.pow((1 + c), user_months)) / (Math.pow((1 + c), user_months) - 1))
+
+    while(remaining_balance >= 0) {
+      ir = remaining_balance * c;
+      console.log("interest: " + ir);
+      this.interestArray.push(ir);
+      pl = p - ir;
+      console.log("principal: " + pl);
+      this.principalArray.push(pl);
+      remaining_balance = remaining_balance - pl;
+      console.log("remaining: " + remaining_balance);
+    }
+
+    this.ngOnInit();
+    
+    return 0;
   }
 
+
   ngOnInit() {
+    this.chart = new Chart('canvas', {
+    type: 'line',
+    data: {
+        labels: this.paymentsArray,
+        datasets: [{
+            label: 'Interest Amount',
+            data: this.interestArray,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+          label: 'Principal Amount',
+          data: this.principalArray,
+          borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }
+      ]
+        
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
 
   }
    

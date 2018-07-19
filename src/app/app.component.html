@@ -13,7 +13,7 @@
     <div class="col s12 ">
         <ul class="tabs ">
             <li class="tab col s4"><a class="active" href="#test1">Mortgage Calculator</a></li>
-            <li class="tab col s4"><a href="#test2">Visualization</a></li>
+            <li (click)="calculateAmorization()" class="tab col s4"><a href="#test2">Visualization</a></li>
             <li class="tab col s4"><a href="#test3">Amortization Schedule</a></li>
         </ul>
     </div>
@@ -22,19 +22,19 @@
             <div class="input-field col s4">
                 <div class="form-group">
                     <i class="material-icons prefix">attach_money</i>
-                    <input [(ngModel)]="loanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
+                    <input [(ngModel)]="loanAmount" id="userLoanAmount" class="form-control" type="number" placeholder="Total Loan Amount" [ngModelOptions]="{standalone:true}">
                 </div>
             </div> 
             <div class="input-field col s4">
                 <div class="form-group">
                     <i class="material-icons prefix">insert_chart_outlined</i>
-                    <input [(ngModel)]="interestRate" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
+                    <input [(ngModel)]="interestRate" id="userInterest" class="form-control" type="number" placeholder="Interest Rate" [ngModelOptions]="{standalone:true}">
                 </div>
             </div>   
             <div class="input-field col s4">
                 <div class="form-group">
                     <i class="material-icons prefix">timer</i>
-                    <input [(ngModel)]="numYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
+                    <input [(ngModel)]="numYears" id="userYears" class="form-control" type="number" placeholder="Number of years" [ngModelOptions]="{standalone:true}">
                 </div>
             </div>
         </form>
@@ -58,16 +58,14 @@
         </div>     
     </div>
     <div id="test2" class="col s12">
-        <h1>Tables go Here</h1>
-        <h1>{{ generateAmorizationArray() }}</h1>
-        <h6>{{paymentArray}}</h6>
-        <h6>{{interestArray}}</h6>
-        <h6>{{principalArray}}</h6>
-        
+        <h1>Amortization Table</h1>
+        <div [hidden]="!chart">
+            <canvas id="canvas" width="300" height="60">{{chart}}</canvas>
+        </div>
+        {{interestArray}}
     </div>
     <div id="test3" class="col s12">
         <h1>Amorization Table Here</h1> 
-
     </div>
 </div>
 
