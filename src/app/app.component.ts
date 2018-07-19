@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Chart} from 'chart.js';
- 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,6 +22,8 @@ export class AppComponent {
   paymentsArray = [];
   interestArray = [];
   principalArray = [];
+  yearlyInterestArray= [];
+  yearlyPrincipalArray= [];
 
 
   constructor() {}
@@ -54,13 +56,24 @@ export class AppComponent {
     var years = parseFloat((<HTMLInputElement>document.getElementById("userYears")).value);
 
     var month_counter = 1;
-
+//    var year_counter = 1;
+/*
+    while(year_counter <= years) {
+      this.paymentsArray.push(year_counter);
+      year_counter++;
+    }
+*/
     while(month_counter <= user_months) {
-      this.paymentsArray.push(month_counter);
+      if(month_counter % 12 == 0){
+          this.paymentsArray.push(month_counter/12);
+      }
+
       month_counter++;
     }
 
+
     month_counter = 0;
+  //  year_counter = 0;
 
     var ir;
     var pl;
@@ -68,20 +81,25 @@ export class AppComponent {
     var c = user_interest_rate / 1200.0;
     var l = user_loan_amount;
     var p = l * ((c * Math.pow((1 + c), user_months)) / (Math.pow((1 + c), user_months) - 1))
+    month_counter = user_months;
 
-    while(remaining_balance >= 0) {
+    while(month_counter > 0) {
       ir = remaining_balance * c;
       console.log("interest: " + ir);
-      this.interestArray.push(ir);
+
       pl = p - ir;
-      console.log("principal: " + pl);
-      this.principalArray.push(pl);
+      if(month_counter % 12 == 0){
+        console.log("principal: " + pl.to);
+        this.principalArray.push(pl);
+        this.interestArray.push(ir);
+      }
       remaining_balance = remaining_balance - pl;
-      console.log("remaining: " + remaining_balance);
+      month_counter--;
+      //console.log("remaining: " + remaining_balance);
     }
 
     this.ngOnInit();
-    
+
     return 0;
   }
 
@@ -94,51 +112,103 @@ export class AppComponent {
         datasets: [{
             label: 'Interest Amount',
             data: this.interestArray,
+            fill: false,
             backgroundColor: [
+                'rgba(75, 192, 192, 1)'
+              /*
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
+                */
             ],
             borderColor: [
+                'rgba(75, 192, 192, 1)'
+              /*
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
+                */
             ],
-            borderWidth: 1
+            borderWidth: 2,
+            responsiveAnimationDuration: 500
         },{
           label: 'Principal Amount',
           data: this.principalArray,
+          fill: false,
+          backgroundColor: [
+            'rgba(255,99,132,1)'
+          ]
           borderColor: [
+            'rgba(255,99,132,1)'
+            /*
               'rgba(255,99,132,1)',
               'rgba(54, 162, 235, 1)',
               'rgba(255, 206, 86, 1)',
               'rgba(75, 192, 192, 1)',
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)'
+              */
           ],
-          borderWidth: 1
+          borderWidth: 2,
+          responsiveAnimationDuration: 500
       }
       ]
-        
+
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
+      title: {
+      fontSize: 20,
+        display: true,
+        text: 'Interest vs. Principal'
+      },
+      scales: {
+         yAxes: [{
+           scaleLabel: {
+             display: true,
+             labelString: 'Amount in Dollars'
+           },
+           ticks: {
+             beginAtZero:true,
+                // Include a dollar sign in the ticks
+                callback: function(value, index, values) {
+                    return '$' + value;
                 }
-            }]
-        }
+            },
+            type: 'linear'
+
+         }],
+         xAxes: [{
+           scaleLabel: {
+             display: true,
+             labelString: 'Years'
+           },
+           beginAtZero:true,
+           ticks: {
+    //         max: 10,
+    //         min:0,
+
+            // stepSize:1,
+          //   autoSkip:true,
+          //   maxTicksLimit: 10
+           },
+           time: {
+              // unit: 'month'
+           },
+           //type: 'time',
+          // distribution: 'series'
+      //     type:'linear'
+
+         }]
+       }
     }
 });
 
   }
-   
-}
 
+}
