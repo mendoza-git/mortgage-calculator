@@ -45,18 +45,6 @@
     <div class="col s4" style="text-align: center;">
       <h5>Number of Payments</h5>
     </div>
-
-    <div id="test3" class="col s12">
-      <div class="box-container">
-        <h2>How we came up with your numbers.</h2>
-        <h4>Monthly Principle and Interest Calculation: P * ((1 + r)^n) / (1 + r)^n</h4>
-        <br>
-        <br>
-        <h4>P = Initial Principal (loan amount)</h4>
-        <h4>r = Interest Rate per Period</h4>
-        <h4>n = Total Number of Payments or Periods</h4>
-      </div>
-
       <div class="col s4" style="text-align: center;">
         <h5>Total Payments</h5>
       </div>
@@ -78,19 +66,23 @@
       {{interestArray}}
     </div>
     <div id="test3" class="col s12">
-      <div class="box-container">
-        <h2>Formulas and Functions (All in Typescript)</h2>
-        <h3>Monthly Principle and Interest Calculation: ----</h3>
-        <h3>Number of Payments Calculation: ----</h3>
-        <h3>Total Payments Calculation: ----</h3>
-      </div>
-    </div>
+        <div class="box-container">
+                <h2>Mortgage Calculator Information:</h2>
+
+                <p>The Fazzie May Mortgage Calculator© displays the payment breakdown for a standard fixed-rate mortgage based on user inputs. Mortgage calculators can play a vital role in the home buying process. They can also be fun to play with. The more informed home buyers are, the less likely they are to default. This results in lower delinquency rates for Fannie Mae and MBS investors. The calculator is made from Angular, HTML, CSS, TS, Chart.js, and Materialize running on an AWS EC2 instance. Created for the 2018 Fannie Mae Immersion Program.</p>
+          
+                <h3>Monthly Payment Formula:</h3>
+                <h4>M = P * ( ( r * ( 1 + r )^n ) / ( ( 1 + r )^n – 1 ) )</h4>
+                <h6>P - Principle, r - Interest Rate, n - Number of Payments</h6>
+          
+                <h3>Total Payments Formula:</h3>
+                <h4>T = M * n</h4>
+                <h6>M - Monthly Payments, n - Number of Payments</h6>
+          
+                <h3>Total Interest Payments Formula:</h3>
+                <h4>I = T - P</h4>
+                <h6>T - Total Payments, P - Principle</h6>
+        </div>
   </div>
-
-
-
-
-
-
 
   <img class="fannie-img" id="house" width="600" src="https://designmodo.com/wp-content/uploads/2015/04/86-illustration-finished.png" />
