@@ -106,8 +106,8 @@ export class AppComponent {
       pl = p - ir;
       if(month_counter % 12 == 0){
         console.log("principal: " + pl.to);
-        this.principalArray.push(pl);
-        this.interestArray.push(ir);
+        this.principalArray.push(pl.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        this.interestArray.push(ir.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
       }
       remaining_balance = remaining_balance - pl;
       month_counter--;
